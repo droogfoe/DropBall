@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace CommandPattern.Move
 {
-    public class MoveCommand : Command
+    public class AxisMoveCommand : Command
     {
         private MovementCommander commander;
 
-        public MoveCommand()
+        public AxisMoveCommand()
         {
             Debug.Log("無參建構子");
         }
-        public MoveCommand(MovementCommander _commander) : this()
+        public AxisMoveCommand(MovementCommander _commander) : this()
         {
             Debug.Log("Commander inject");
             commander = _commander;
@@ -20,12 +20,13 @@ namespace CommandPattern.Move
 
         public override void Execute()
         {
+            Debug.Log("empty function.");
             throw new System.NotImplementedException();
         }
 
         public override void Execute(object obj)
         {
-            throw new System.NotImplementedException();
+            commander.AxisMoveExecute(obj);
         }
     }
 }
