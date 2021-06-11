@@ -9,6 +9,7 @@ public class CharactoerController : MonoBehaviour
     private MovementCommander movementCommander;
     private AxisMoveCommand joystickInputCommand;
 
+
     // Start is called before the first frame update
     void Start()
     {

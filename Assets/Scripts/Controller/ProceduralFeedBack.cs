@@ -6,7 +6,7 @@ using UnityEditor;
 [RequireComponent(typeof(MeshFilter))]
 public class ProceduralFeedBack : MonoBehaviour
 {
-    public Transform refer;
+    public float maxSpeed = 8;
     public AnimationCurve curve;
     public bool RecalculateNormals = false;
     public Vector3 velocity;
@@ -59,7 +59,7 @@ public class ProceduralFeedBack : MonoBehaviour
 
             float dotValue = Vector3.Dot(worldSpaceNormal, dir);
             Vector3 deformValue = vertexDatas[i].point + Vector3.Lerp(transform.InverseTransformDirection (-worldSpaceNormal), transform.InverseTransformDirection(dir) * Mathf.Sign(dotValue), curve.Evaluate(Mathf.Abs(dotValue))) * 0.2f;
-            deformVertices[i] = Vector3.Lerp(vertexDatas[i].point, deformValue, speed/8);
+            deformVertices[i] = Vector3.Lerp(vertexDatas[i].point, deformValue, speed/ maxSpeed);
         }
 
         mesh.vertices = deformVertices;
@@ -78,21 +78,4 @@ public class ProceduralFeedBack : MonoBehaviour
             yield return null;
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    if (!EditorApplication.isPlaying)
-    //        return;
-
-    //    Gizmos.matrix = transform.localToWorldMatrix;
-    //    Handles.matrix = transform.localToWorldMatrix;
-    //    for (int i = 0; i < vertexDatas.Length; i++)
-    //    {
-    //        Vector3 dir = (refer.position - transform.position).normalized;
-    //        float dotValue = Vector3.Dot(transform.TransformDirection(vertexDatas[i].normal), dir);
-    //        Handles.Label(vertexDatas[i].point, System.Math.Round(dotValue, 1).ToString());
-    //        //Handles.Label(vertexDatas[i].point, Mathf.Sign(dotValue).ToString());
-    //        //Gizmos.DrawWireCube(vertexDatas[i].point, Vector3.one * 0.01f);
-    //        //DrawArrow.ForGizmo(vertexDatas[i].point, vertexDatas[i].normal);
-    //    }
-    //}
 }
