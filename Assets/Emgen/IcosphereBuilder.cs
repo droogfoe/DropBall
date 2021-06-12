@@ -35,16 +35,16 @@ namespace Emgen
             }
 
             // Get the midpoint of the pair of indices
-            public int GetMidpoint(int i1, int i2)
-            {
-                var key = IndexPairToKey(i1, i2);
+            //public int GetMidpoint(int i1, int i2)
+            //{
+            //    var key = IndexPairToKey(i1, i2);
 
-                // return from the table
-                if (table.ContainsKey(key))
-                    return table[key];
-                // add a new entry to the table
-                var mid = (vertexCache);
-            }
+            //    // return from the table
+            //    if (table.ContainsKey(key))
+            //        return table[key];
+            //    // add a new entry to the table
+            //    var mid = (vertexCache.vertices[i1] + vertexCache.vertices[i2]) * 0.5f;
+            //}
         }
         #endregion
     }

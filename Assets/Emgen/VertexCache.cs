@@ -100,21 +100,28 @@ namespace Emgen
         {
             return vertices.ToArray();
         }
-        //public int[] MakeIndexArrayForLineMesh()
-        //{
-        //    var indices = new int[6 * triangles.Count];
-        //    var i = 0;
-        //    foreach (var t in triangles)
-        //    {
-        //        indices[i++] = t.i1;
-        //        indices[i++] = t.i2;
-        //        indices[i++] = t.i2;
-        //        indices[i++] = t.i3;
-        //        indices[i++] = t.i3;
-        //        indices[i++] = t.i1;
-        //    }
-        //    //return
-        //}
+        public int[] MakeIndexArrayForLineMesh()
+        {
+            var indices = new int[6 * triangles.Count];
+            var i = 0;
+            foreach (var t in triangles)
+            {
+                indices[i++] = t.i1;
+                indices[i++] = t.i2;
+                indices[i++] = t.i2;
+                indices[i++] = t.i3;
+                indices[i++] = t.i3;
+                indices[i++] = t.i1;
+            }
+            return indices;
+        }
+        public Mesh BuildLineMesh()
+        {
+            var mesh = new Mesh();
+            mesh.vertices = MakeVertexArrayForLineMesh();
+            mesh.SetIndices(MakeIndexArrayForLineMesh(), MeshTopology.Lines, 0);
+            return mesh;
+        }
         #endregion
     }
 }
